@@ -4,7 +4,7 @@ const lastName = document.getElementById("lastname");
 const username = document.getElementById("username");
 const dateOfBirth = document.getElementById("dateofbirth");
 const email = document.getElementById("email");
-const password = document.getElementById("password");
+const password1 = document.getElementById("password");
 const password2 = document.getElementById("password2");
 
 //Show error message
@@ -50,6 +50,20 @@ function checkDOB(input) {
   }
 }
 
+//Check required fields
+function checkRequired(inputArr) {
+  let isRequired = false;
+
+  inputArr.forEach(function (input) {
+    if (input.value.trim() === "") {
+      showError(input, `${getFieldName(input)} is required`);
+      isRequired = true;
+    } else {
+      showSuccess(input);
+    }
+  });
+}
+
 //Check input length
 function checkLength(input, min, max) {
   if (input.value.length < min) {
@@ -67,21 +81,30 @@ function checkLength(input, min, max) {
   }
 }
 
-//Check required fields
-//function checkRequired
+//Check passwords match
+function checkPasswordsMatch(input1, input2) {
+  if (input1.value !== input2.value) {
+    showError(input2, `Passwords do not match. Please try again`);
+  }
+}
 
 //Add event listener
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
+  checkRequired([
+    firstName,
+    lastName,
+    username,
+    email,
+    dateOfBirth,
+    password1,
+    password2,
+  ]);
+
   checkEmail(email);
   checkDOB(dateOfBirth);
   checkLength(username, 5, 15);
-  checkLength(password, 6, 10);
-
-  if (username.value === "") {
-    showError(username, "Please enter your username");
-  } else {
-    showSuccess(username);
-  }
+  checkLength(password1, 6, 10);
+  checkPasswordsMatch(password1, password2);
 });
