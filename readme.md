@@ -1,6 +1,6 @@
-# Form Validator (Small learning Project)
+# Form Validator (Small Learning Project)
 
-Simple client side form validation. Check required, length, email and password match
+Create a simple client side form validation.
 
 ## Project Specifications
 
