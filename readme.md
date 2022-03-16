@@ -1,6 +1,6 @@
 # Form Validator (Small Learning Project)
 
-Create a simple client side form validation.
+Create a simple client side form validation built with JS
 
 ## Project Specifications
 
